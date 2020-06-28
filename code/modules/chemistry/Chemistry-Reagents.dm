@@ -48,6 +48,7 @@ datum
 		var/pierces_outerwear = 0//whether or not this penetrates outerwear that may protect the victim(e.g. biosuit)
 		var/stun_resist = 0
 		var/minimum_reaction_temperature = INFINITY // Minimum temperature for reaction_temperature() to occur, use -INFINITY to bypass this check
+		var/list/drug_filters = null //this is a BAD idea, format is list("filter_id" = filter)
 
 		New()
 			..()
@@ -68,7 +69,7 @@ datum
 			data = null
 			volume = 0
 			reacting = 0
-
+			drug_filters = null
 
 		proc/on_add()
 			if (stun_resist > 0)
@@ -310,6 +311,53 @@ datum
 				return AD
 			return
 
+		proc/do_drug_wobble(var/mob/M, var/filter_id, var/wibble_amt, var/wobble_amt) //starts a wavey effect on the clients game display
+			if (!M.client) //if they dont have a client, dont bother
+				boutput(world, "debug")
+				return
+//			var/client/client = M.client
+			if (!M.client.game_display) //if the client doesnt have all the fancy plane stuff, also dont bother
+				boutput(world, "debug 2")
+				return
+			if (!winget(M.client, "menu.set_drug_wobble", "is-checked")) //if they have drug wobble turned off in preferences, also dont bother
+				boutput(world, "debug 3")
+				return
+			if (isnull(src.drug_filters)) //initialise the list only when its needed, to save on performance
+				src.drug_filters = list()
+				boutput(world, "made list")
+			if (src.drug_filters.Find(filter_id)) //if we already have a matching drug filter, please dont bother
+				boutput(world, "debug 4")
+				return
+
+			M.client.game_display.request_keep_together()
+			M.client.game_display.filters.Add(filter(type = "wave", x = rand() * 50, y = rand() * 50, size = (rand() * 2.5 + 0.5) * 0.02, offset = rand()))
+			var/my_filter = M.client.game_display.filters[length(M.client.game_display.filters)]
+			animate(my_filter, offset = my_filter:offset, time = 0, loop = -1, flags = ANIMATION_PARALLEL)
+			animate(offset = my_filter:offset - 1, time = rand()*20 + 10)
+			src.drug_filters[filter_id] = my_filter
+
+		proc/stop_drug_wobble(var/mob/M, var/filter_id) //stops the wavey effect on the clients game display
+			if (!M.client) //if they dont have a client, dont bother
+				boutput(world, "debug")
+				return
+//			var/client/client = M.client
+			if (M.client.game_display) //if the client doesnt have all the fancy plane stuff, also dont bother
+				boutput(world, "debug 2")
+				return
+			if (!winget(M.client, "menu.set_drug_wobble", "is-checked")) //if they have drug wobble turned off in preferences, also dont bother
+				boutput(world, "debug 3")
+				return
+			if (isnull(src.drug_filters)) //if the list isnt initialised, then theres no filter
+				boutput(world, "debug 4")
+				return
+			if (!src.drug_filters.Find(filter_id)) //if theres no filter associated with the id
+				boutput(world, "debug 5")
+				return
+
+			M.client.game_display.filters.Remove(filter_id)
+			M.client.game_display.release_keep_together()
+
+
 		// reagent state helper procs
 
 		proc/is_solid()
@@ -325,8 +373,23 @@ datum
 			return
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/obj/item/space_thing/filter_thing
+	name = "filter thing"
+	var/my_filter = null
 
-
+	attack_self(var/mob/M)
+		var/choice = input(M, "add or remove", "add or remove") in list("add", "remove")
+		if (choice == "add")
+//			var/client/client = M.client
+			M.client.game_display.request_keep_together()
+			M.client.game_display.filters.Add(filter(type = "wave", x = rand() * 50, y = rand() * 50, size = (rand() * 2.5 + 0.5) * 0.02, offset = rand()))
+			src.my_filter = M.client.game_display.filters[length(M.client.game_display.filters)]
+			animate(src.my_filter, offset = src.my_filter:offset, time = 0, loop = -1, flags = ANIMATION_PARALLEL)
+			animate(offset = my_filter:offset - 1, time = rand()*20 + 10)
+//			src.drug_filters[filter_id] = my_filter
+		else
+			M.client.game_display.filters.Remove(my_filter)
+			M.client.game_display.release_keep_together()
 
 		/*helldrug
 			name = "cthonium"
