@@ -381,18 +381,23 @@ datum
 	var/my_filter = null
 
 	attack_self(var/mob/M)
-		var/choice = input(M, "add or remove", "add or remove") in list("add", "remove")
+		var/choice = input(M, "add or remove or test", "add or remove or test") in list("add", "remove", "test")
 		if (choice == "add")
 //			var/client/client = M.client
 			M.client.game_display.request_keep_together()
-			M.client.game_display.filters.Add(filter(type = "wave", x = rand() * 50, y = rand() * 50, size = (rand() * 2.5 + 0.5) * 0.02, offset = rand()))
+			M.client.game_display.filters += filter(type = "wave", x = rand() * 50, y = rand() * 50, size = 1.5, offset = rand())
+			boutput(world, "[M.client.game_display.filters.len]")
 			src.my_filter = M.client.game_display.filters[length(M.client.game_display.filters)]
 			animate(src.my_filter, offset = src.my_filter:offset, time = 0, loop = -1, flags = ANIMATION_PARALLEL)
 			animate(offset = my_filter:offset - 1, time = rand()*20 + 10)
 //			src.drug_filters[filter_id] = my_filter
-		else
-			M.client.game_display.filters.Remove(my_filter)
+
+		else if (choice == "test")
+			M.client.game_display.filters -= my_filter
 			M.client.game_display.release_keep_together()
+
+		else
+			src.filters += filter(type = "wave", x = rand() * 50, y = rand() * 50, size = 5, offset = rand())
 
 		/*helldrug
 			name = "cthonium"
