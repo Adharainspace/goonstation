@@ -3,6 +3,8 @@
 	desc = "some sort of pole that naturally attracts void particles"
 	icon = 'icons/obj/machines/voidengine.dmi'
 	icon_state = "voidpole"
+	density = 1
+	anchored = 1
 	var/power_amt = 1000
 	var/on = 0
 
@@ -23,13 +25,14 @@
 	name = "void shooter"
 	desc = "shoots"
 	icon = 'icons/obj/machines/voidengine64x32.dmi'
-	icon_state = "laser_start-con"
+	icon_state = "laser_start-unc"
 	bound_x = 64
 	anchored = 1
+	density = 1
 	var/obj/machinery/power/terminal/terminal = null
 	var/load_last_tick = 0
 	var/consuming = 0 //are we consuming power
-	var/consume_amt = 2000 //how much power are we eating
+	var/consume_amt = 1000 //how much power are we eating
 	var/pow_amt = 0 //how much power is stored
 
 	New()
@@ -71,7 +74,4 @@
 
 	proc/add_load(var/load_amt)
 		if (src.terminal && src.terminal.powernet)
-			src.terminal.powernet.newload += load_amt //idk if this is proper, or if theres some proc to manually add load to a pownet
-			boutput(world, "[src.terminal.powernet.newload]")
-
-/datum/powernet
+			src.terminal.powernet.newload += load_amt

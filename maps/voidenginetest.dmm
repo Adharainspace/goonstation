@@ -1,0 +1,51 @@
+"a" = (/turf/space,/area)
+"h" = (/obj/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/plating,/area/station/engine/power)
+"i" = (/obj/machinery/light/small/floor/purpleish,/turf/simulated/floor/plating,/area/station/engine/power)
+"k" = (/obj/machinery/light/incandescent/purpleish{dir = 4},/turf/simulated/floor/plating,/area/station/engine/power)
+"r" = (/obj/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/plating,/area/station/engine/power)
+"s" = (/obj/machinery/power/smes,/obj/cable{d2 = 4; icon_state = "0-4"; pixel_y = 0},/turf/simulated/floor/plating,/area/station/engine/power)
+"t" = (/obj/machinery/power/apc/autoname_north,/turf/simulated/floor/plating,/area/station/engine/power)
+"y" = (/obj/machinery/light/incandescent/purpleish{dir = 8},/turf/simulated/floor/plating,/area/station/engine/power)
+"B" = (/turf/simulated/wall/auto/reinforced/supernorn,/area/station/engine/power)
+"E" = (/obj/cable{icon_state = "1-2"},/turf/simulated/floor/plating,/area/station/engine/power)
+"F" = (/obj/machinery/power/terminal{dir = 1},/obj/cable{icon_state = "0-2"},/turf/simulated/floor/plating,/area/station/engine/power)
+"J" = (/obj/item/device/multitool,/obj/item/clothing/gloves/yellow,/turf/simulated/floor/plating,/area/station/engine/power)
+"K" = (/obj/machinery/power/terminal{dir = 8},/obj/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/void_laser_emitter,/turf/simulated/floor/plating,/area/station/engine/power)
+"P" = (/obj/machinery/light/incandescent/purpleish,/turf/simulated/floor/plating,/area/station/engine/power)
+"R" = (/obj/landmark/start/latejoin,/turf/simulated/floor/plating,/area/station/engine/power)
+"T" = (/obj/cable,/obj/machinery/power/void_collector,/turf/simulated/floor/plating,/area/station/engine/power)
+"U" = (/turf/simulated/floor/plating,/area/station/engine/power)
+"Z" = (/obj/machinery/light/incandescent/purpleish{dir = 1},/turf/simulated/floor/plating,/area/station/engine/power)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaBBBBBBBBBBBBBBBBBBBaaaaaaa
+aaaaBRshUZtUUUZUUUZUUUBaaaaaaa
+aaaaBJFEUUUUUUUUUUUUUUBaaaaaaa
+aaaaBUErKUUUUUUUUUiUUkBaaaaaaa
+aaaaByTUUUUUUUiUUUUUUUBaaaaaaa
+aaaaBUUUUiUUUUUUUUUUUUBaaaaaaa
+aaaaBUUUUUUUUUUUUUUUUUBaaaaaaa
+aaaaByUUUUUUUUUUUUUUUUBaaaaaaa
+aaaaBUUUUUUUUUUUUUUUUkBaaaaaaa
+aaaaBUUUUUUUUUiUUUUUUUBaaaaaaa
+aaaaBUUUUUUUUUUUUUUUUUBaaaaaaa
+aaaaByUUUiUUUUUUUUiUUUBaaaaaaa
+aaaaBUUUUUUUUUUUUUUUUUBaaaaaaa
+aaaaBUUUUUUUUUiUUUUUUkBaaaaaaa
+aaaaBUUUUUUUUUUUUUUUUUBaaaaaaa
+aaaaByUUUiUUUUUUUUiUUUBaaaaaaa
+aaaaBUUUUUUUUUUUUUUUUUBaaaaaaa
+aaaaBUPUUUUPUUUUUPUUUUBaaaaaaa
+aaaaBBBBBBBBBBBBBBBBBBBaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
