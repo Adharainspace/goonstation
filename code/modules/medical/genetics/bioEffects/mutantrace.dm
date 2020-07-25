@@ -172,3 +172,13 @@
 	msgGain = "You feel like you're ready for some Cow RP."
 	msgLose = "Your udders fall off!"
 	icon_state  = "cow"
+
+/datum/bioEffect/mutantrace/baal
+	name = "Infernal Genetics"
+	desc = "Modifies the subject's physical traits to be in line with a newly discovered alien race."
+	id = "baal"
+	mutantrace_option = "Baal"
+	mutantrace_path = /datum/mutantrace/baal
+	msgGain = "You feel pretty hot..."
+	msgLose = "You cool down."
+	icon_state = "baal"

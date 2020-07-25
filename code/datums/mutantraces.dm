@@ -24,6 +24,7 @@
 	var/exclusive_language = 0	// if 1, only understood by others of this mutantrace
 	var/voice_message = null	// overrides normal voice message if defined (and others don't understand us, ofc)
 	var/voice_name = "human"
+	var/different_mf_sprites = 0 //set to 1 if theres different sprites for males/females (this is NOT SWEAR WORDS)
 	var/jerk = 0				// Should robots arrest these by default?
 
 	var/icon = 'icons/effects/genetics.dmi'
@@ -99,6 +100,11 @@
 			APPLY_MOVEMENT_MODIFIER(M, movement_modifier, src.type)
 		if(ishuman(M))
 			src.mob = M
+			if (src.different_mf_sprites)
+				if (src.mob.gender == "male")
+					src.icon_state += "-m"
+				else
+					src.icon_state += "-f"
 			var/list/obj/item/clothing/restricted = list(mob.w_uniform, mob.shoes, mob.wear_suit)
 			for(var/obj/item/clothing/W in restricted)
 				if (istype(W,/obj/item/clothing))
@@ -1655,6 +1661,16 @@
 			bleed(mob, 10, 3, T)
 			T.react_all_cleanables()
 
+/datum/mutantrace/baal
+	name = "baal"
+	icon_state = "baal"
+	icon_override_static = 1
+	allow_fat = 0
+	override_attack = 0
+	different_mf_sprites = 1
+//	voice_override = "cow"
+
+	//todo: code other shit lol
 
 #undef OVERRIDE_ARM_L
 #undef OVERRIDE_ARM_R

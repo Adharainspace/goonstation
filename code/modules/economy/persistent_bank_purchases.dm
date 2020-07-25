@@ -28,6 +28,7 @@ var/global/list/persistent_bank_purchaseables =	list(\
 	new /datum/bank_purchaseable/nt_backpack,\
 	new /datum/bank_purchaseable/lizard,\
 	new /datum/bank_purchaseable/cow,\
+	new /datum/bank_purchaseable/baal,\
 	new /datum/bank_purchaseable/skeleton,\
 	new /datum/bank_purchaseable/roach,\
 	new /datum/bank_purchaseable/limbless,\
@@ -357,6 +358,18 @@ var/global/list/persistent_bank_purchaseables =	list(\
 					H.bioHolder.AddEffect("cow")
 					return 1
 			return 0
+
+	baal
+		name = "Baal"
+		cost = 5000
+
+		Create(var/mob/living/M)
+			if (ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if (H.bioHolder)
+					H.bioHolder.AddEffect("baal")
+					return 1
+				return 0
 
 	skeleton
 		name = "Skeleton"
