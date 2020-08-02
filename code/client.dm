@@ -102,6 +102,8 @@
 
 	var/hand_ghosts = 1 //pickup ghosts inhand
 
+	var/show_tutorial_button = 1 //shows the tutorial button in the lobby (true by default so everyone sees it)
+
 /client/proc/audit(var/category, var/message, var/target)
 	if(src.holder && (src.holder.audit & category))
 		logTheThing("audit", src, target, message)

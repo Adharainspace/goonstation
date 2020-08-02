@@ -476,7 +476,13 @@ menu "menu"
 		command = "Help"
 		category = "&Help"
 		saved-params = "is-checked"
-
+	elem
+		name = "&Disable Tutorial Button"
+		command = "disable-tutorial"
+		category = "&Help"
+		is-checked = false
+		can-check = true
+		saved-params = "is-checked"
 
 window "blank-map"
 	elem "blank-map"

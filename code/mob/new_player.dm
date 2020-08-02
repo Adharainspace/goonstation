@@ -19,6 +19,7 @@ mob/new_player
 	anchored = 1	//  don't get pushed around
 
 	var/chui/window/spend_spacebux/bank_menu
+	var/datum/tgui_window_holder/tutorial_button = null
 
 	// How could this even happen? Regardless, no log entries for unaffected mobs (Convair880).
 	ex_act(severity)
@@ -32,6 +33,9 @@ mob/new_player
 
 			mind = null
 		key = null
+
+		if (src.tutorial_button)
+			src.tutorial_button = null
 		..()
 
 	Login()
@@ -42,6 +46,11 @@ mob/new_player
 			keyd = mind.key
 
 		new_player_panel()
+		if (src.client.show_tutorial_button) //tutorial button check
+			src.tutorial_button = new(src)
+			src.tutorial_button.name = "Tutorial Button"
+			src.tutorial_button.ui_name = "TutorialButton"
+			src.tutorial_button.ui_interact(src)
 		var/starting_loc
 		if (newplayer_start.len > 0)
 			starting_loc = pick(newplayer_start)
@@ -865,3 +874,13 @@ a.latejoin-card:hover {
 				src.mind.transfer_to(shittybill)
 				break
 #endif
+
+/datum/tgui_window_holder //an object for our tgui to live in :]
+	var/name = ""
+	var/ui_name = ""
+
+	ui_interact(mob/user, datum/tgui/ui)
+		ui = tgui_process.try_update_ui(user, src, ui)
+		if (!ui)
+			ui = new(user, src, "[src.ui_name]", name)
+			ui.open()
