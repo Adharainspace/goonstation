@@ -805,7 +805,7 @@ var/global/curr_day = null
 		return
 
 	// Tgui Topic middleware
-	if(!tgui_Topic(href_list))
+	if(tgui_Topic(href_list))
 		return
 
 	var/mob/M
