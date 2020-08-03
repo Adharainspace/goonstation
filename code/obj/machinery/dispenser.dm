@@ -60,10 +60,7 @@
 /obj/machinery/dispenser/process()
 	return
 
-/obj/machinery/dispenser/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-
+/obj/machinery/di
 /* INTERFACE */
 
 /obj/machinery/dispenser/ui_interact(mob/user, datum/tgui/ui)
