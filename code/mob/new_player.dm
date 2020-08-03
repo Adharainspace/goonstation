@@ -47,6 +47,7 @@ mob/new_player
 
 		new_player_panel()
 		if (src.client.show_tutorial_button) //tutorial button check
+			boutput(world, "yup!")
 			src.tutorial_button = new(src)
 			src.tutorial_button.name = "Tutorial Button"
 			src.tutorial_button.ui_name = "TutorialButton"
@@ -880,7 +881,9 @@ a.latejoin-card:hover {
 	var/ui_name = ""
 
 	ui_interact(mob/user, datum/tgui/ui)
+		boutput(world, "hey")
 		ui = tgui_process.try_update_ui(user, src, ui)
 		if (!ui)
-			ui = new(user, src, "[src.ui_name]", name)
+			boutput(world, "fuck, [user], [src], [src.ui_name], [src.name]")
+			ui = new(user, src, src.ui_name, src.name)
 			ui.open()
