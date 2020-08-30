@@ -954,6 +954,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
+			if(user.a_intent != "disarm") return //make it disarm only
 			if(master && istype(master, /obj/item/baton) && !master:can_stun())
 				playsound(get_turf(master), 'sound/weapons/Gunclick.ogg', 50, 0, 0.1, 2)
 				return
